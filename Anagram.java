@@ -31,21 +31,26 @@ public class Anagram {
 	public static boolean isAnagram(String str1, String str2) {
 		str1 = preProcess(str1);
 		str2 = preProcess(str2);
-	
 		str1 = removeSpaces(str1);
 		str2 = removeSpaces(str2);
 	
-		if (str1.length() != str2.length()) return false;
+		if (str1.length() != str2.length()) {
+			return false;
+		}
+		String mutableStr2 = str2;
 	
-		int[] charCounts = new int[256]; 
 		for (int i = 0; i < str1.length(); i++) {
-			charCounts[str1.charAt(i)]++;
-			charCounts[str2.charAt(i)]--;
+			char currentChar = str1.charAt(i);
+			int indexInStr2 = mutableStr2.indexOf(currentChar);
+	
+			if (indexInStr2 == -1) {
+				return false;
+			}
+	
+			mutableStr2 = mutableStr2.substring(0, indexInStr2) + mutableStr2.substring(indexInStr2 + 1);
 		}
-		for (int count : charCounts) {
-			if (count != 0) return false; 
-		}
-		return true; 
+	
+		return true;
 	}
 
 	public static String removeSpaces(String str) {
