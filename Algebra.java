@@ -64,18 +64,28 @@ public class Algebra {
         return isNegative ? minus(0, product) : product;
     }
 
-    // Returns x^n (for n >= 0)
-    public static int pow(int x, int n) {
-        if (x < 0 || n < 0) {
-            return -1; // Indicating invalid input
-        }
 
-        int result = 1;
-        for (int i = 0; i < n; i++) {
-            result = times(result, x);
-        }
-        return result;
+  // Returns x^n (for n >= 0)
+public static int pow(int x, int n) {
+    if (n < 0) {
+        return -1; 
     }
+    
+    
+    if (x == 0 && n == 0) {
+        return 1; 
+    }
+
+    boolean isNegativeBase = x < 0 && (n % 2 != 0);
+    x = x < 0 ? minus(0, x) : x; 
+
+    int result = 1;
+    for (int i = 0; i < n; i++) {
+        result = times(result, x);
+    }
+
+    return isNegativeBase ? minus(0, result) : result;
+}
 
     // Returns the integer part of x1 / x2
     public static int div(int x1, int x2) {
