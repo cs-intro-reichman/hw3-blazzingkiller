@@ -97,11 +97,10 @@ public class LoanCalc {
 
         double low = loan / n; 
         double high = loan; 
-        double mid;
+        double mid = (low + high) / 2;
         double balance;
 
         while (high - low > epsilon) {
-            mid = (low + high) / 2; 
             balance = endBalance(loan, rate, n, mid);
             iterationCounter++;
 
@@ -114,7 +113,7 @@ public class LoanCalc {
             }
         }
 
-        return ((int) (Math.floor((low + high) / 2))); // Return the approximate payment
+        return ((int) (mid)); // Return the approximate payment
     
     }
 }
