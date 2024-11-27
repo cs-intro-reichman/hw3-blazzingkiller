@@ -18,7 +18,7 @@ public class LoanCalc {
             System.out.println("Invalid input.");
         } else {
             // Round to nearest integer
-            System.out.println((int) (bruteForcePayment));  
+            System.out.printf("%d\n", (int) (bruteForcePayment));
             System.out.println("Number of iterations: " + iterationCounter);
         }
 
@@ -29,7 +29,7 @@ public class LoanCalc {
             System.out.println("Invalid input.");
         } else {
             // Round to nearest integer
-            System.out.println((int) (bisectionPayment));  
+            System.out.printf("%d\n", (int) (bisectionPayment));  
             System.out.println("Number of iterations: " + iterationCounter);
         }
     }
