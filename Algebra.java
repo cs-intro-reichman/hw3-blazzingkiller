@@ -54,8 +54,8 @@ public class Algebra {
         int product = 0;
         boolean isNegative = (x1 < 0 && x2 > 0) || (x1 > 0 && x2 < 0);
 
-        x1 = x1 < 0 ? minus(0, x1) : x1; // Make x1 positive
-        x2 = x2 < 0 ? minus(0, x2) : x2; // Make x2 positive
+        x1 = x1 < 0 ? minus(0, x1) : x1; 
+        x2 = x2 < 0 ? minus(0, x2) : x2; 
 
         for (int i = 0; i < x2; i++) {
             product = plus(product, x1);
@@ -90,14 +90,14 @@ public static int pow(int x, int n) {
     // Returns the integer part of x1 / x2
     public static int div(int x1, int x2) {
         if (x2 == 0) {
-            return 0; // Indicating division by zero is not allowed
+            return 0; 
         }
 
         int quotient = 0;
         boolean isNegative = (x1 < 0 && x2 > 0) || (x1 > 0 && x2 < 0);
 
-        x1 = x1 < 0 ? minus(0, x1) : x1; // Make x1 positive
-        x2 = x2 < 0 ? minus(0, x2) : x2; // Make x2 positive
+        x1 = x1 < 0 ? minus(0, x1) : x1; 
+        x2 = x2 < 0 ? minus(0, x2) : x2; 
 
         int sum = 0;
         while (sum + x2 <= x1) {
@@ -111,13 +111,13 @@ public static int pow(int x, int n) {
     // Returns x1 % x2
     public static int mod(int x1, int x2) {
         if (x2 == 0) {
-            return 0; // Indicating modulo by zero is not allowed
+            return 0; 
         }
 
         boolean isNegative = x1 < 0;
 
-        x1 = x1 < 0 ? minus(0, x1) : x1; // Make x1 positive
-        x2 = x2 < 0 ? minus(0, x2) : x2; // Make x2 positive
+        x1 = x1 < 0 ? minus(0, x1) : x1;
+        x2 = x2 < 0 ? minus(0, x2) : x2;
 
         int sum = 0;
         while (sum + x2 <= x1) {
@@ -131,7 +131,7 @@ public static int pow(int x, int n) {
     // Returns the integer part of sqrt(x)
     public static int sqrt(int x) {
         if (x < 0) {
-            return -1; // Indicating invalid input for square root of negative numbers
+            return -1;
         }
 
         int root = 0;

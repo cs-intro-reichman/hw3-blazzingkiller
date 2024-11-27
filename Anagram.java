@@ -29,54 +29,42 @@ public class Anagram {
 
     // Function to check if two strings are anagrams
 	public static boolean isAnagram(String str1, String str2) {
-		// Preprocess both strings
 		str1 = preProcess(str1);
 		str2 = preProcess(str2);
 	
-		// Remove spaces from both strings
 		str1 = removeSpaces(str1);
 		str2 = removeSpaces(str2);
 	
-		// If lengths don't match after preprocessing and space removal, they're not anagrams
 		if (str1.length() != str2.length()) return false;
 	
-		// Use a single array to count occurrences of characters
-		int[] charCounts = new int[256]; // Full ASCII range
-	
-		// Increment counts for str1 and decrement counts for str2
+		int[] charCounts = new int[256]; 
 		for (int i = 0; i < str1.length(); i++) {
 			charCounts[str1.charAt(i)]++;
 			charCounts[str2.charAt(i)]--;
 		}
-	
-		// Check if all counts are zero
 		for (int count : charCounts) {
-			if (count != 0) return false; // Mismatch in character counts
+			if (count != 0) return false; 
 		}
 	
-		return true; // Strings are anagrams
+		return true; 
 	}
 
 	public static String removeSpaces(String str) {
-		String result = ""; // Start with an empty string
+		String result = ""; 
 		for (int i = 0; i < str.length(); i++) {
-			if (str.charAt(i) != ' ') { // Skip spaces
-				result += str.charAt(i); // Append non-space characters
+			if (str.charAt(i) != ' ') { 
+				result += str.charAt(i); 
 			}
 		}
 		return result;
 	}
 	
-	
-	
-	
     // Function to preprocess a string: Remove special characters and convert to lowercase
 	public static String preProcess(String str) {
-		String result = ""; // Initialize an empty string
+		String result = ""; 
 		for (int i = 0; i < str.length(); i++) {
 			char ch = str.charAt(i);
 			if (ch == ' ' || (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z')) {
-				// Convert uppercase to lowercase and append to result
 				result += (ch >= 'A' && ch <= 'Z') ? (char) (ch + 32) : ch;
 			}
 		}
@@ -87,15 +75,15 @@ public class Anagram {
 
     // Function to generate a random anagram
 	public static String randomAnagram(String str) {
-		char[] chars = str.toCharArray(); // Convert string to array of characters
-		boolean[] used = new boolean[chars.length]; // Track used characters
-		String result = ""; // Start with an empty string
+		char[] chars = str.toCharArray(); 
+		boolean[] used = new boolean[chars.length]; 
+		String result = ""; 
 	
 		while (result.length() < chars.length) {
-			int randomIndex = (int) (Math.random() * chars.length); // Pick a random index
-			if (!used[randomIndex]) { // If this character isn't used yet
-				result += chars[randomIndex]; // Add it to the result
-				used[randomIndex] = true; // Mark it as used
+			int randomIndex = (int) (Math.random() * chars.length); 
+			if (!used[randomIndex]) { 
+				result += chars[randomIndex]; 
+				used[randomIndex] = true; 
 			}
 		}
 	
