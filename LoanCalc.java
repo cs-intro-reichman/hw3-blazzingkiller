@@ -79,7 +79,7 @@ public class LoanCalc {
             if (balance > epsilon) {
                 payment += epsilon;  // Adjust payment if balance is still above epsilon
             } else {
-                return payment;      // Return the payment amount if balance is within epsilon
+                return (int) payment;      // Return the payment amount if balance is within epsilon
             }
             
             // If payment exceeds loan, break the loop to prevent infinite loop
@@ -87,7 +87,7 @@ public class LoanCalc {
                 break;
             }
         }
-        return ((int)(Math.floor(payment)));  // Return the final payment value
+        return ((int) (payment));  // Return the final payment value
     }
 
     // Uses bisection search to compute an approximation of the periodical payment
@@ -105,7 +105,7 @@ public class LoanCalc {
             iterationCounter++;
 
             if (Math.abs(balance) <= epsilon) { 
-                return mid;
+                return (int) mid;
             } else if (balance > 0) { 
                 low = mid;  // Increase payment
             } else { // If balance is negative, the payment is too high
