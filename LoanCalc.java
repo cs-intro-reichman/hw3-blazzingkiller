@@ -1,18 +1,15 @@
-// Computes the periodical payment necessary to pay a given loan.
 public class LoanCalc {
 
     static double epsilon = 0.001;  // Approximation accuracy
     static int iterationCounter;    // Number of iterations
 
-    // Gets the loan data and computes the periodical payment.
-    // Expects to get three command-line arguments: loan amount (double),
-    // interest rate (double, as a percentage), and number of payments (int).
+    public LoanCalc() {}
+
     public static void main(String[] args) {
         // Get loan data
         double loan = Double.parseDouble(args[0]);
         double rate = Double.parseDouble(args[1]);
         int n = Integer.parseInt(args[2]);
-
         System.out.println("Loan = " + loan + ", interest rate = " + rate + "%, periods = " + n);
 
         // Compute payment using brute force search
@@ -21,7 +18,8 @@ public class LoanCalc {
         if (bruteForcePayment < 0) {
             System.out.println("Invalid input.");
         } else {
-            System.out.println((bruteForcePayment));  // Round to nearest integer
+            // Round the result to the nearest integer and print
+            System.out.println((int) (bruteForcePayment));  
             System.out.println("Number of iterations: " + iterationCounter);
         }
 
@@ -31,7 +29,8 @@ public class LoanCalc {
         if (bisectionPayment < 0) {
             System.out.println("Invalid input.");
         } else {
-            System.out.println((bisectionPayment));  // Round to nearest integer
+            // Round the result to the nearest integer and print
+            System.out.println((int) (bisectionPayment));  
             System.out.println("Number of iterations: " + iterationCounter);
         }
     }
@@ -39,15 +38,15 @@ public class LoanCalc {
     // Computes the ending balance of a loan, given the loan amount, the periodical
     // interest rate (as a percentage), the number of periods (n), and the periodical payment.
     private static double endBalance(double loan, double rate, int n, double payment) {
-        double balance = loan; 
+        double balance = loan;
         double annualRate = rate / 100.0;  // Convert percentage to decimal
-    
+
         // Apply interest and payments for each period
         for (int i = 0; i < n; i++) {
             balance -= payment;               // Subtract payment from balance
             balance += balance * annualRate;  // Apply interest after payment
         }
-    
+
         return balance;  // Return remaining balance
     }
 
@@ -79,7 +78,7 @@ public class LoanCalc {
             if (balance > epsilon) {
                 payment += epsilon;  // Adjust payment if balance is still above epsilon
             } else {
-                return (int) payment;      // Return the payment amount if balance is within epsilon
+                return payment;      // Return the payment amount if balance is within epsilon
             }
             
             // If payment exceeds loan, break the loop to prevent infinite loop
@@ -87,7 +86,7 @@ public class LoanCalc {
                 break;
             }
         }
-        return ((int) (payment));  // Return the final payment value
+        return Math.round(payment);  // Return the final payment value, rounded to nearest integer
     }
 
     // Uses bisection search to compute an approximation of the periodical payment
@@ -97,23 +96,25 @@ public class LoanCalc {
 
         double low = loan / n; 
         double high = loan; 
-        double mid = (low + high) / 2;
+        double mid;
         double balance;
 
         while (high - low > epsilon) {
+            mid = (low + high) / 2; 
             balance = endBalance(loan, rate, n, mid);
             iterationCounter++;
 
             if (Math.abs(balance) <= epsilon) { 
-                return (int) mid;
-            } else if (balance > 0) { 
+                return mid;  // Return the payment when balance is sufficiently close to zero
+            }
+
+            if (balance > 0) { 
                 low = mid;  // Increase payment
-            } else { // If balance is negative, the payment is too high
+            } else { 
                 high = mid;  // Decrease payment
             }
         }
 
-        return ((int) (mid)); // Return the approximate payment
-    
+        return Math.round((low + high) / 2);  // Return the approximate payment, rounded to nearest integer
     }
 }
