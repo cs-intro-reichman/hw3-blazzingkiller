@@ -70,25 +70,27 @@ public class Anagram {
 		}
 		return result;
 	}
-	
-	
 
     // Function to generate a random anagram
 	public static String randomAnagram(String str) {
-		char[] chars = str.toCharArray(); 
-		boolean[] used = new boolean[chars.length]; 
-		String result = ""; 
-	
-		while (result.length() < chars.length) {
-			int randomIndex = (int) (Math.random() * chars.length); 
-			if (!used[randomIndex]) { 
-				result += chars[randomIndex]; 
-				used[randomIndex] = true; 
-			}
+		// Convert the input string to a character array
+		char[] chars = str.toCharArray();
+		
+		// Shuffle the array using a simple approach (Fisher-Yates shuffle)
+		for (int i = 0; i < chars.length; i++) {
+			// Generate a random index to swap with the current element
+			int randomIndex = (int) (Math.random() * chars.length);
+			
+			// Swap characters at positions i and randomIndex
+			char temp = chars[i];
+			chars[i] = chars[randomIndex];
+			chars[randomIndex] = temp;
 		}
-	
-		return result;
+		
+		// Convert the shuffled array back to a string
+		return new String(chars);
 	}
+	
 	
 }
 	

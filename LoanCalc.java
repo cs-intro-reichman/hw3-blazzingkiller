@@ -21,7 +21,7 @@ public class LoanCalc {
         if (bruteForcePayment < 0) {
             System.out.println("Invalid input.");
         } else {
-            System.out.println((int) bruteForcePayment);
+            System.out.println(String.format("%.2f", bruteForcePayment));  // Round to 2 decimal places
             System.out.println("Number of iterations: " + iterationCounter);
         }
 
@@ -31,7 +31,7 @@ public class LoanCalc {
         if (bisectionPayment < 0) {
             System.out.println("Invalid input.");
         } else {
-            System.out.println((int) bisectionPayment);
+            System.out.println(String.format("%.2f", bisectionPayment));  // Round to 2 decimal places
             System.out.println("Number of iterations: " + iterationCounter);
         }
     }
@@ -107,9 +107,9 @@ public class LoanCalc {
             if (Math.abs(balance) <= epsilon) { 
                 return mid;
             } else if (balance > 0) { 
-                low = mid;
+                low = mid;  // Increase payment
             } else { // If balance is negative, the payment is too high
-                high = mid;
+                high = mid;  // Decrease payment
             }
         }
 
