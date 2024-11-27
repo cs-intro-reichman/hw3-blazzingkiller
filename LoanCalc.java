@@ -87,7 +87,7 @@ public class LoanCalc {
                 break;
             }
         }
-        return Math.round(payment);  // Return the final payment value
+        return (int) (payment);  // Return the final payment value
     }
 
     // Uses bisection search to compute an approximation of the periodical payment
@@ -114,6 +114,6 @@ public class LoanCalc {
             }
         }
 
-        return Math.round((low + high) / 2); // Return the approximate payment
+        return (int) ((low + high) / 2) ; // Return the approximate payment
     }
 }
