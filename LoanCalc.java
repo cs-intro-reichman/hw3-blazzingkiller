@@ -19,7 +19,7 @@ public class LoanCalc {
         } else {
             // Round to nearest integer
             System.out.println((int) bruteForcePayment);
-            System.out.println("Number of iterations: " + iterationCounter);
+            System.out.println("number of iterations: " + iterationCounter);
         }
 
         // Compute payment using bisection search
@@ -30,7 +30,7 @@ public class LoanCalc {
         } else {
             // Round to nearest integer
             System.out.println((int) bisectionPayment);  
-            System.out.println("Number of iterations: " + iterationCounter);
+            System.out.println("number of iterations: " + iterationCounter);
         }
     }
 
