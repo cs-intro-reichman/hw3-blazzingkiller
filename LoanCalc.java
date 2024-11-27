@@ -18,7 +18,7 @@ public class LoanCalc {
             System.out.println("Invalid input.");
         } else {
             // Round to nearest integer
-            System.out.printf("%d\n", (int) (bruteForcePayment));
+            System.out.println(bruteForcePayment);
             System.out.println("Number of iterations: " + iterationCounter);
         }
 
@@ -29,7 +29,7 @@ public class LoanCalc {
             System.out.println("Invalid input.");
         } else {
             // Round to nearest integer
-            System.out.printf("%d\n", (int) (bisectionPayment));  
+            System.out.println(bisectionPayment);  
             System.out.println("Number of iterations: " + iterationCounter);
         }
     }
@@ -74,7 +74,7 @@ public class LoanCalc {
             if (balance > epsilon) {
                 payment += epsilon;  // Adjust payment if balance is still above epsilon
             } else {
-                return Math.floor(payment);      // Return the payment amount if balance is within epsilon
+                return (int) Math.floor(payment);      // Return the payment amount if balance is within epsilon
             }
             
             if (payment > loan) {
@@ -82,7 +82,7 @@ public class LoanCalc {
             }
             iterationCounter++;
         }
-        return Math.floor(payment);  // Return the final payment value
+        return (int) Math.floor(payment);  // Return the final payment value
     }
 
     // Uses bisection search to compute an approximation of the periodical payment
@@ -101,7 +101,7 @@ public class LoanCalc {
             iterationCounter++;
 
             if (Math.abs(balance) <= epsilon) { 
-                return Math.floor(mid);  // Return the payment when balance is sufficiently close to zero
+                return (int) Math.floor(mid);  // Return the payment when balance is sufficiently close to zero
             } else if (balance > 0) { 
                 low = mid;  // Increase payment if balance is positive
             } else { 
@@ -110,6 +110,6 @@ public class LoanCalc {
         }
 
         // Round to nearest integer and return the approximate payment
-        return Math.floor((low + high) / 2);  // Return the payment, rounded to nearest integer
+        return (int) Math.floor((low + high) / 2);  // Return the payment, rounded to nearest integer
     }
 }
