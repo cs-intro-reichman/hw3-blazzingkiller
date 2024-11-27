@@ -21,7 +21,7 @@ public class LoanCalc {
         if (bruteForcePayment < 0) {
             System.out.println("Invalid input.");
         } else {
-            System.out.println((int) (bruteForcePayment));  // Round to nearest integer
+            System.out.println((bruteForcePayment));  // Round to nearest integer
             System.out.println("Number of iterations: " + iterationCounter);
         }
 
@@ -31,7 +31,7 @@ public class LoanCalc {
         if (bisectionPayment < 0) {
             System.out.println("Invalid input.");
         } else {
-            System.out.println((int) (bisectionPayment));  // Round to nearest integer
+            System.out.println((bisectionPayment));  // Round to nearest integer
             System.out.println("Number of iterations: " + iterationCounter);
         }
     }
@@ -41,12 +41,13 @@ public class LoanCalc {
     private static double endBalance(double loan, double rate, int n, double payment) {
         double balance = loan; 
         double annualRate = rate / 100.0;  // Convert percentage to decimal
-
+    
         // Apply interest and payments for each period
         for (int i = 0; i < n; i++) {
-            balance = (balance - payment) + balance * annualRate;  // Subtract payment, then apply interest
+            balance -= payment;               // Subtract payment from balance
+            balance += balance * annualRate;  // Apply interest after payment
         }
-
+    
         return balance;  // Return remaining balance
     }
 
@@ -86,7 +87,7 @@ public class LoanCalc {
                 break;
             }
         }
-        return (int) payment;  // Return the final payment value
+        return Math.round(payment);  // Return the final payment value
     }
 
     // Uses bisection search to compute an approximation of the periodical payment
@@ -113,6 +114,6 @@ public class LoanCalc {
             }
         }
 
-        return (int)((low + high) / 2); // Return the approximate payment
+        return Math.round((low + high) / 2); // Return the approximate payment
     }
 }
