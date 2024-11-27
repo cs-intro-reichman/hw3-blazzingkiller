@@ -21,7 +21,7 @@ public class LoanCalc {
         if (bruteForcePayment < 0) {
             System.out.println("Invalid input.");
         } else {
-            System.out.println(Math.round(bruteForcePayment));  // Round to nearest integer
+            System.out.println((int) (bruteForcePayment));  // Round to nearest integer
             System.out.println("Number of iterations: " + iterationCounter);
         }
 
@@ -31,7 +31,7 @@ public class LoanCalc {
         if (bisectionPayment < 0) {
             System.out.println("Invalid input.");
         } else {
-            System.out.println(Math.round(bisectionPayment));  // Round to nearest integer
+            System.out.println((int) (bisectionPayment));  // Round to nearest integer
             System.out.println("Number of iterations: " + iterationCounter);
         }
     }
@@ -94,7 +94,7 @@ public class LoanCalc {
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {
         iterationCounter = 0;  // Reset the iteration counter
 
-        double low = 0; 
+        double low = loan / n; 
         double high = loan; 
         double mid;
         double balance;
