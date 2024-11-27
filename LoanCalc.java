@@ -115,5 +115,6 @@ public class LoanCalc {
         }
 
         return ((int) (Math.floor((low + high) / 2))); // Return the approximate payment
+    
     }
 }
