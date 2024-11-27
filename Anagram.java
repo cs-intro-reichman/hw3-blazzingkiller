@@ -45,7 +45,6 @@ public class Anagram {
 		for (int count : charCounts) {
 			if (count != 0) return false; 
 		}
-	
 		return true; 
 	}
 
